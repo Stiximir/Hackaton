@@ -1,25 +1,54 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  body {
-    background: #87ceeb; /* ciel */
-    overflow: hidden;
-    font-family: sans-serif;
-  }
-  canvas {
-    background: #cceeff; /* mer claire */
-    display: block;
-    margin: 0 auto;
-  }
-  #score {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 20px;
-    background: rgba(255,255,255,0.7);
-    padding: 10px;
-    border-radius: 10px;
-  }
-  
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  color: #333;
+}
+body {
+  background: #87ceeb;
+  overflow: hidden;
+  font-family: sans-serif;
+  color: #333;
+  font-size: 16px;
+}
+
+canvas {
+  background: #cceeff;
+  display: block;
+  margin: 0 auto; /* Centrer horizontalement */
+  position: relative; /* Position relative pour respecter le conteneur */
+  z-index: 1;
+  border: 1px solid #000; /* Optionnel : bordure du canvas */
+  border-radius: 10px; /* Optionnel : arrondir les coins du canvas */
+}
+
+#score {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 10px;
+  border-radius: 10px;
+  z-index: 10;
+  color: #333;
+  font-weight: bold;
+}
+
+#gameContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Prend toute la hauteur de la fenêtre */
+  width: 100vw; /* Prend toute la largeur de la fenêtre */
+  overflow: hidden;
+  background-color: #f0f0f0; /* Optionnel : couleur de fond */
+}
+
+#gameCanvas {
+  display: block;
+  margin: 0 auto;
+  background-color: #ffffff; /* Optionnel : couleur de fond du canvas */
+  border: 1px solid #000; /* Optionnel : bordure du canvas */
+}
