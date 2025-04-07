@@ -10,14 +10,16 @@ const images = {
   deadTortue2: new Image(),
   deadDauphin1: new Image(),
   deadDauphin2: new Image(),
+  caracter: new Image(),
 };
 
+images.caracter.src = "/src/img/caracter.png";
 images.tortue1.src = "/src/img/tortue_1_1.png";
 images.tortue2.src = "/src/img/tortue_1_2.png";
-images.dauphin1.src = "/src/img/dauphin_1_1.png";
-images.dauphin2.src = "/src/img/dauphin_1_2.png";
 images.deadTortue1.src = "/src/img/dead_turtle_1_1.png";
 images.deadTortue2.src = "/src/img/dead_turtle_1_2.png";
+images.dauphin1.src = "/src/img/dauphin_1_1.png";
+images.dauphin2.src = "/src/img/dauphin_1_2.png";
 images.deadDauphin1.src = "/src/img/dead_dauphin_1_1.png";
 images.deadDauphin2.src = "/src/img/dead_dauphin_1_2.png";
 
@@ -120,15 +122,15 @@ function addToPile(tortue) {
 function update() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // déplacement
+  // Déplacement
   if (plastique.left && plastique.x > 0) plastique.x -= plastique.speed;
   if (plastique.right && plastique.x + plastique.width < canvas.width)
     plastique.x += plastique.speed;
 
-  // plastique
-  ctx.fillRect(plastique.x, plastique.y, plastique.width, plastique.height);
+  // Dessiner l'image de la barre (plastique)
+  ctx.drawImage(images.caracter, plastique.x, plastique.y, plastique.width, plastique.height);
 
-  // tortues
+  // Tortues
   for (let i = tortues.length - 1; i >= 0; i--) {
     const t = tortues[i];
     t.y += t.speed;
@@ -146,7 +148,7 @@ function update() {
     if (collision(t, plastique)) {
       captured++;
       addToPile(t);
-      tortues.splice(i, 1);
+      tortues.splice(i, 1); // Retirer la tortue capturée
     } else if (t.y > canvas.height) {
       // Marquer la tortue comme morte et remplacer son image
       t.isDead = true;
@@ -154,6 +156,9 @@ function update() {
 
       // Positionner la tortue morte juste au bord inférieur
       t.y = canvas.height - t.height;
+
+      // Incrémenter le compteur "sauvées"
+      saved++;
     }
   }
 
