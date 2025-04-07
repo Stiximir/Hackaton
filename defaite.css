@@ -7,12 +7,11 @@ body {
   min-height: 100vh;
   background: url("image.png") no-repeat center center;
   background-size: cover;
-  color: #fff;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Overlay pour assombrir l'image */
@@ -23,7 +22,7 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 0;
 }
 
@@ -38,29 +37,47 @@ body::before {
   animation: fadeInScale 1.5s ease-out;
   max-width: 80%;
   margin: auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Animation au survol du conteneur */
+.container:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
 }
 
 h1 {
-  font-size: 4em;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 6em;
   margin-bottom: 0.5em;
-  color: #ffcc00; /* Jaune brillant pour un contraste fort */
-  font-weight: 600;
+  color: #f30000;
   text-transform: uppercase;
   letter-spacing: 5px;
+  background: linear-gradient(135deg, #1e90ff, #ffffff); /* Dégradé bleu-blanc */
+  -webkit-background-clip: text;
+  background-clip: text;
   animation: slideIn 1s ease-out;
+  text-shadow: 4px 4px 15px rgba(0, 0, 0, 0.7);
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Animation au survol du titre */
+h1:hover {
+  transform: translateY(-5px);
+  text-shadow: 6px 6px 20px rgba(0, 0, 0, 0.8);
 }
 
 p {
   font-size: 1.5em;
   margin: 0.5em 0;
-  color: #ddd;
+  color: #A9D1D6; /* Couleur douce rappelant l'écume de mer */
   line-height: 1.6;
   animation: fadeIn 2s ease-out;
 }
 
 .message {
   font-style: italic;
-  color: #f0f0f0;
+  color: #B0E0E6; /* Bleu clair, apaisant */
   font-size: 1.8em;
   animation: shake 0.5s ease-in-out infinite;
   margin-top: 20px;
