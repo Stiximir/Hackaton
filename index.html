@@ -5,37 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Plastic Invaders</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: url('images/Plan_de_travail_1.png') no-repeat center center fixed;
-      background-size: cover;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-    .start-button {
-      background: #F6E05E;
-      padding: 1.2rem 2.5rem;
-      font-size: 1.5rem;
-      color: #1A365D;
-      border: none;
-      border-radius: 30px;
-      margin-top: 270px;
-      cursor: pointer;
-      box-shadow: 0 0 20px rgba(0,0,0,0.4);
-      transition: transform 0.3s ease, background 0.3s ease;
-    }
-    .start-button:hover {
-      transform: scale(1.1);
-      background: #ECC94B;
-    }
-  </style>
+  <link rel="stylesheet" href="/src/style/index.css" />
 </head>
 <body>
-  <button class="start-button" onclick="startGame()">Commencer le jeu</button>
-  <script src="index.js"></script>
+  <div class="container">
+    <button class="button" onclick="startGame()">Commencer le jeu</button>
+    <button onclick="location.href='/association.html'" class="button">Association</button>
+  </div>
+  <script src="/src/script/index.js"></script>
 </body>
 </html>
