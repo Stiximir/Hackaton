@@ -64,8 +64,8 @@ function spawnTortue() {
     width: pileWidth,
     height: pileHeight,
     speed: canvas.height * 0.004 + Math.random() * canvas.height * 0.002,
-    image: randomImage, // Assigner l'image
-    isDead: false, // Initialiser comme vivante
+    image: randomImage,
+    isDead: false, 
   });
 }
 
@@ -111,7 +111,6 @@ function addToPile(tortue) {
 
   lastPile.tortues.push(tortue);
 
-  // Vérifier si on dépasse la largeur de l'écran
   const maxPiles = Math.floor(canvas.width / (pileWidth + pileGap));
   if (piles.length > maxPiles) {
     alert("L'écran est saturé de tortues !");
@@ -147,6 +146,7 @@ function update() {
 
     if (collision(t, plastique)) {
       captured++;
+      t.image = images.deadTortue1; // Changer l'image de la tortue capturée
       addToPile(t);
       tortues.splice(i, 1); // Retirer la tortue capturée
     } else if (t.y > canvas.height) {
