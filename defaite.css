@@ -33,7 +33,6 @@ body::before {
   text-align: center;
   padding: 60px 40px;
   border-radius: 20px;
-  /* Dégradé et effet "eau" */
   background: linear-gradient(135deg, rgba(30,144,255,0.3), rgba(255,255,255,0.1));
   border: 2px solid rgba(255,255,255,0.5);
   backdrop-filter: blur(10px);
@@ -54,7 +53,6 @@ h1 {
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 5px;
-  /* Dégradé sur le texte : un mélange de bleu et de blanc */
   background: linear-gradient(135deg, #1e90ff, #ffffff);
   -webkit-background-clip: text;
   background-clip: text;
@@ -127,24 +125,25 @@ p {
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 
-/* Bulles flottantes animées sur toute la page */
+/* Bulles flottantes animées améliorées */
 .bubble {
   position: absolute;
   bottom: -50px;
-  width: 50px;
-  height: 50px;
-  background-color: rgba(255, 255, 255, 0.6);
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(135, 206, 235, 0.5));
   border-radius: 50%;
   opacity: 0.6;
-  animation: bubbleMove 10s infinite ease-in-out;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6), 0 0 30px rgba(0, 255, 255, 0.4);
+  animation: bubbleMove 12s infinite ease-in-out;
 }
 
 .bubble:nth-child(odd) {
-  animation-duration: 12s;
+  animation-duration: 14s;
 }
 
 .bubble:nth-child(even) {
-  animation-duration: 15s;
+  animation-duration: 16s;
 }
 
 /* Animation pour faire flotter les bulles */
