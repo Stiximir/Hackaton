@@ -1,6 +1,26 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
+const images = {
+  tortue1: new Image(),
+  tortue2: new Image(),
+  dauphin1: new Image(),
+  dauphin2: new Image(),
+  deadTortue1: new Image(),
+  deadTortue2: new Image(),
+  deadDauphin1: new Image(),
+  deadDauphin2: new Image(),
+};
+
+images.tortue1.src = "/src/img/tortue_1_1.png";
+images.tortue2.src = "/src/img/tortue_1_2.png";
+images.dauphin1.src = "/src/img/dauphin_1_1.png";
+images.dauphin2.src = "/src/img/dauphin_1_2.png";
+images.deadTortue1.src = "/src/img/dead_turtle_1_1.png";
+images.deadTortue2.src = "/src/img/dead_turtle_1_2.png";
+images.deadDauphin1.src = "/src/img/dead_dauphin_1_1.png";
+images.deadDauphin2.src = "/src/img/dead_dauphin_1_2.png";
+
 // Adapter la taille du canvas à l'écran
 canvas.width = window.innerWidth * 0.75;
 canvas.height = window.innerHeight;
@@ -19,8 +39,8 @@ const plastique = {
   right: false,
 };
 
-const pileWidth = canvas.width * 0.035;
-const pileHeight = pileWidth;
+const pileWidth = canvas.width * 0.05; // Augmenter la largeur
+const pileHeight = pileWidth; // Garder une proportion carrée
 const pileGap = pileWidth * 0.2;
 let piles = [{ tortues: [] }];
 
@@ -35,12 +55,15 @@ document.addEventListener("keyup", (e) => {
 });
 
 function spawnTortue() {
+  const randomImage = Math.random() > 0.5 ? images.tortue1 : images.tortue2; // Choisir une image aléatoire
   tortues.push({
     x: Math.random() * (canvas.width - pileWidth), // Garder les tortues dans les limites
     y: -pileHeight,
     width: pileWidth,
     height: pileHeight,
     speed: canvas.height * 0.004 + Math.random() * canvas.height * 0.002,
+    image: randomImage, // Assigner l'image
+    isDead: false, // Initialiser comme vivante
   });
 }
 
@@ -56,9 +79,9 @@ function collision(a, b) {
 function drawPiles() {
   piles.forEach((pile) => {
     pile.tortues.forEach((tortue, i) => {
-      ctx.fillStyle = "green";
-      ctx.fillRect(
-        tortue.x, // Utiliser la position horizontale de la tortue
+      ctx.drawImage(
+        tortue.image, // Utiliser l'image de la tortue
+        tortue.x, // Position horizontale
         canvas.height - (i + 1) * (pileHeight + 2), // Empiler les tortues vers le haut
         pileWidth,
         pileHeight
@@ -103,7 +126,6 @@ function update() {
     plastique.x += plastique.speed;
 
   // plastique
-  ctx.fillStyle = "black";
   ctx.fillRect(plastique.x, plastique.y, plastique.width, plastique.height);
 
   // tortues
@@ -111,16 +133,27 @@ function update() {
     const t = tortues[i];
     t.y += t.speed;
 
-    ctx.fillStyle = "green";
-    ctx.fillRect(t.x, t.y, t.width, t.height);
+    // Vérifier si la tortue est morte
+    if (t.isDead) {
+      // Dessiner l'image de la tortue morte
+      ctx.drawImage(t.image, t.x, t.y, t.width, t.height);
+      continue; // Passer à la prochaine tortue
+    }
+
+    // Dessiner l'image de la tortue vivante
+    ctx.drawImage(t.image, t.x, t.y, t.width, t.height);
 
     if (collision(t, plastique)) {
       captured++;
       addToPile(t);
       tortues.splice(i, 1);
     } else if (t.y > canvas.height) {
-      saved++;
-      tortues.splice(i, 1);
+      // Marquer la tortue comme morte et remplacer son image
+      t.isDead = true;
+      t.image = Math.random() > 0.5 ? images.deadTortue1 : images.deadTortue2;
+
+      // Positionner la tortue morte juste au bord inférieur
+      t.y = canvas.height - t.height;
     }
   }
 
@@ -131,9 +164,8 @@ function update() {
       tortue.x += (tortue.targetX - tortue.x) * 0.1; // Animation fluide sur l'axe X
       tortue.y += (tortue.targetY - tortue.y) * 0.1; // Animation fluide sur l'axe Y
 
-      // Dessiner la tortue
-      ctx.fillStyle = "green";
-      ctx.fillRect(tortue.x, tortue.y, pileWidth, pileHeight);
+      // Dessiner l'image de la tortue capturée
+      ctx.drawImage(tortue.image, tortue.x, tortue.y, pileWidth, pileHeight);
     });
   });
 
