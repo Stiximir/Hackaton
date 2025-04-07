@@ -11,8 +11,10 @@ const images = {
   deadDauphin1: new Image(),
   deadDauphin2: new Image(),
   caracter: new Image(),
+  mer: new Image(),
 };
 
+images.mer.src = "/src/img/mer.png"
 images.caracter.src = "/src/img/caracter.png";
 images.tortue1.src = "/src/img/tortue_1_1.png";
 images.tortue2.src = "/src/img/tortue_1_2.png";
@@ -127,6 +129,16 @@ function addToPile(tortue) {
 function update() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+  // Dessiner l'image de la mer en arrière-plan
+  ctx.globalAlpha = 1.0; // Assurez-vous que l'image est complètement opaque
+  ctx.drawImage(images.mer, 0, 0, canvas.width, canvas.height);
+
+  // Ajouter un rectangle semi-transparent pour réduire la luminosité
+  ctx.globalAlpha = 0.3; // Ajustez l'opacité (0.0 = transparent, 1.0 = opaque)
+  ctx.fillStyle = "black"; // Utilisez une couleur noire pour réduire la luminosité
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.globalAlpha = 1.0; // Réinitialiser l'opacité pour les autres éléments
+
   // Déplacement
   if (plastique.left && plastique.x > 0) plastique.x -= plastique.speed;
   if (plastique.right && plastique.x + plastique.width < canvas.width)
@@ -135,7 +147,7 @@ function update() {
   // Dessiner l'image de la barre (plastique)
   ctx.drawImage(images.caracter, plastique.x, plastique.y, plastique.width, plastique.height);
 
-  // Tortues
+  // Tortues et Dauphins
   for (let i = tortues.length - 1; i >= 0; i--) {
     const t = tortues[i];
     t.y += t.speed;
@@ -154,7 +166,7 @@ function update() {
       captured++;
       if (t.animal) {
         t.image = Math.random() > 0.5 ? images.deadDauphin1 : images.deadDauphin2;
-      } else if (!t.dauphin) {
+      } else {
         t.image = Math.random() > 0.5 ? images.deadTortue1 : images.deadTortue2;
       }
       addToPile(t);

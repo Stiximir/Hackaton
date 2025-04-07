@@ -5,8 +5,9 @@
   font-family: sans-serif;
   color: #333;
 }
+
 body {
-  background: #87ceeb;
+  background-color: #001f3f; /* Bleu marine */
   overflow: hidden;
   font-family: sans-serif;
   color: #333;
@@ -37,13 +38,13 @@ canvas {
 }
 
 #gameContainer {
+  background-color: #001f3f; /* Bleu marine */
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh; /* Prend toute la hauteur de la fenêtre */
   width: 100vw; /* Prend toute la largeur de la fenêtre */
   overflow: hidden;
-  background-color: #f0f0f0; /* Optionnel : couleur de fond */
 }
 
 #gameCanvas {
