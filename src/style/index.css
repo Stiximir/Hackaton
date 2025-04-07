@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: 'Orbitron', sans-serif;
-    background: url('/src/img/Plan_de_travail_1.png') no-repeat center center fixed;
+    background: url('../src/img/backgroundLandingPage.png') no-repeat center center fixed;
     background-size: cover;
     display: flex;
     align-items: center;

@@ -3,7 +3,7 @@
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #F0F4F8;
-  background-image: url('../img/ocean.jpg');
+  background-image: url('/src/img/ocean.jpg');
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
