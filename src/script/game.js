@@ -54,14 +54,12 @@ function collision(a, b) {
 }
 
 function drawPiles() {
-  piles.forEach((pile, index) => {
-    const baseX = canvas.width + index * (pileWidth + pileGap);
-    const baseY = canvas.height - 60;
-    pile.tortues.forEach((_, i) => {
+  piles.forEach((pile) => {
+    pile.tortues.forEach((tortue, i) => {
       ctx.fillStyle = "green";
       ctx.fillRect(
-        baseX,
-        baseY - i * (pileHeight + 2),
+        tortue.x, // Utiliser la position horizontale de la tortue
+        canvas.height - (i + 1) * (pileHeight + 2), // Empiler les tortues vers le haut
         pileWidth,
         pileHeight
       );
@@ -71,12 +69,29 @@ function drawPiles() {
 
 function addToPile(tortue) {
   let lastPile = piles[piles.length - 1];
-  const maxHeight = Math.floor(canvas.height / (pileHeight + 2));
+  const maxHeight = Math.floor(canvas.height / (pileHeight + 2)); // Nombre max de tortues par pile
+
   if (lastPile.tortues.length >= maxHeight) {
-    piles.push({ tortues: [] });
+    piles.push({ tortues: [] }); // Créer une nouvelle pile
     lastPile = piles[piles.length - 1];
   }
+
+  // Générer une position horizontale aléatoire pour la tortue
+  const randomX = Math.random() * (canvas.width - pileWidth); // Position aléatoire sur l'axe X
+  const targetY = canvas.height - (lastPile.tortues.length + 1) * (pileHeight + 2); // Position verticale dans la pile
+
+  // Ajouter les propriétés de destination
+  tortue.targetX = randomX;
+  tortue.targetY = targetY;
+
   lastPile.tortues.push(tortue);
+
+  // Vérifier si on dépasse la largeur de l'écran
+  const maxPiles = Math.floor(canvas.width / (pileWidth + pileGap));
+  if (piles.length > maxPiles) {
+    alert("L'écran est saturé de tortues !");
+    piles = [{ tortues: [] }]; // Réinitialiser les piles si l'écran est saturé
+  }
 }
 
 function update() {
@@ -108,6 +123,19 @@ function update() {
       tortues.splice(i, 1);
     }
   }
+
+  // Animer les tortues capturées vers leur position cible
+  piles.forEach((pile) => {
+    pile.tortues.forEach((tortue) => {
+      // Déplacement progressif vers la position cible
+      tortue.x += (tortue.targetX - tortue.x) * 0.1; // Animation fluide sur l'axe X
+      tortue.y += (tortue.targetY - tortue.y) * 0.1; // Animation fluide sur l'axe Y
+
+      // Dessiner la tortue
+      ctx.fillStyle = "green";
+      ctx.fillRect(tortue.x, tortue.y, pileWidth, pileHeight);
+    });
+  });
 
   drawPiles();
 
