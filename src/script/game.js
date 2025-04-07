@@ -33,9 +33,9 @@ let captured = 0;
 
 const plastique = {
   width: canvas.width * 0.1,
-  height: canvas.height * 0.03,
+  height: canvas.height * 0.12,
   x: (canvas.width - canvas.width * 0.1) / 2, // Centré horizontalement
-  y: canvas.height - canvas.height * 0.05,
+  y: canvas.height - canvas.height * 0.15, // Remonter la poubelle
   speed: canvas.width * 0.01,
   left: false,
   right: false,
