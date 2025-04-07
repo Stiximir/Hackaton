@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #F0F4F8;
+  background-image: url('images/ocean.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  padding: 0 20px;
+}
+
+.header-box {
+  background-color: rgba(26, 54, 93, 0.8);
+  color: white;
+  padding: 30px;
+  border-radius: 15px;
+  margin: 20px 0;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-box h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.header-box p {
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+.accordion {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.accordion-item {
+  margin-bottom: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.accordion-item.open {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.accordion-header {
+  background-color: #1a365d;
+  color: white;
+  padding: 15px;
+  font-size: 18px;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, border-radius 0.3s ease;
+}
+
+.accordion-item.open .accordion-header {
+  border-radius: 10px 10px 0 0;
+}
+
+.accordion-header:hover {
+  background-color: #1a365d;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0;
+  background-color: #F7FAFC;
+  transition: max-height 0.3s ease-out, padding 0.3s ease;
+  border-top: 1px solid #E2E8F0;
+  border-radius: 0 0 10px 10px;
+}
+
+.accordion-content.show {
+  padding: 20px;
+  max-height: 300px;
+}
+
+.accordion-content a {
+  color: #f7fafc;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.accordion-content a:hover {
+  text-decoration: underline;
+  color: #1A365D;
+}
+
+.link-btn {
+  display: inline-block;
+  background-color: #1a365d;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.link-btn:hover {
+  background-color: #122b4d;
+}
