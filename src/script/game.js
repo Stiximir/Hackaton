@@ -57,8 +57,14 @@ document.addEventListener("keyup", (e) => {
 });
 
 function spawnTortue() {
-  const randomImage = Math.random() > 0.5 ? images.tortue1 : images.tortue2; // Choisir une image aléatoire
+  var dauphin = false
+  var randomImage = Math.random() > 0.5 ? images.tortue1 : images.tortue2;
+  if (Math.random() > 0.5) {
+    dauphin = true
+    randomImage = Math.random() > 0.5 ? images.dauphin1 : images.dauphin2; // Choisir une tortue ou un dauphin aléatoirement
+  } // Choisir une image aléatoire
   tortues.push({
+    animal: dauphin,
     x: Math.random() * (canvas.width - pileWidth), // Garder les tortues dans les limites
     y: -pileHeight,
     width: pileWidth,
@@ -146,13 +152,16 @@ function update() {
 
     if (collision(t, plastique)) {
       captured++;
-      t.image = images.deadTortue1; // Changer l'image de la tortue capturée
+      if (t.animal) {
+        t.image = Math.random() > 0.5 ? images.deadDauphin1 : images.deadDauphin2;
+      } else if (!t.dauphin) {
+        t.image = Math.random() > 0.5 ? images.deadTortue1 : images.deadTortue2;
+      }
       addToPile(t);
       tortues.splice(i, 1); // Retirer la tortue capturée
     } else if (t.y > canvas.height) {
       // Marquer la tortue comme morte et remplacer son image
       t.isDead = true;
-      t.image = Math.random() > 0.5 ? images.deadTortue1 : images.deadTortue2;
 
       // Positionner la tortue morte juste au bord inférieur
       t.y = canvas.height - t.height;
@@ -176,7 +185,7 @@ function update() {
 
   drawPiles();
 
-  document.getElementById("score").innerText = `Sauvées : ${saved} | Capturées : ${captured}`;
+  document.getElementById("score").innerText = `Echappée.s : ${saved}\n Morte.s : ${captured}`;
 
   requestAnimationFrame(update);
 }
