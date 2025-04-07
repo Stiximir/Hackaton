@@ -49,11 +49,12 @@ body {
 }
 
 .accordion-item {
-  margin-bottom: 10px;
-  border-radius: 10px;
-  overflow: hidden;
-  transition: box-shadow 0.3s ease;
-}
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: white; /* Pour unifier */
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
 
 .accordion-item.open {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
@@ -66,11 +67,11 @@ body {
   font-size: 18px;
   text-align: left;
   cursor: pointer;
-  width: 100%;
   border: none;
-  border-radius: 10px;
+  width: 100%;
+  transition: all 0.3s ease;
   font-weight: 600;
-  transition: background-color 0.3s ease, border-radius 0.3s ease;
+  border-radius: 0;
 }
 
 .accordion-item.open .accordion-header {
@@ -83,19 +84,19 @@ body {
 }
 
 .accordion-content {
-  max-height: 0;
-  overflow: hidden;
-  padding: 0;
-  background-color: #F7FAFC;
-  transition: max-height 0.3s ease-out, padding 0.3s ease;
-  border-top: 1px solid #E2E8F0;
-  border-radius: 0 0 10px 10px;
-}
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    background-color: #F7FAFC;
+    transition: max-height 0.3s ease-out, padding 0.3s ease;
+    background-color: white;
+  }
 
-.accordion-content.show {
-  padding: 20px;
-  max-height: 300px;
-}
+  .accordion-content.show {
+    padding: 20px;
+    max-height: 300px;
+    border-top: 1px solid #E2E8F0;
+  }
 
 .accordion-content a {
   color: #f7fafc;
