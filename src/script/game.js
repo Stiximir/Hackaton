@@ -139,6 +139,12 @@ function update() {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.globalAlpha = 1.0; // Réinitialiser l'opacité pour les autres éléments
 
+  // Vérifier si le joueur a perdu
+  if (saved >= 5) {
+    window.location.href = "defaite.html"; // Rediriger vers la page de défaite
+    return; // Arrêter l'exécution de la fonction
+  }
+
   // Déplacement
   if (plastique.left && plastique.x > 0) plastique.x -= plastique.speed;
   if (plastique.right && plastique.x + plastique.width < canvas.width)

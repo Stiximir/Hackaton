@@ -5,13 +5,30 @@ body {
   font-family: 'Poppins', sans-serif;
   position: relative;
   min-height: 100vh;
-  background: url("imagefond.jpeg") no-repeat center center;
+  background: url("../img/imagefond.jpeg") no-repeat center center;
   background-size: cover;
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+}
+
+.menu-button {
+  background-color: #1e90ff; /* Bleu clair */
+  color: white;
+  font-size: 1.5em;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.menu-button:hover {
+  background-color: #4682b4; /* Bleu plus foncé */
+  transform: scale(1.1); /* Agrandir légèrement au survol */
 }
 
 /* Overlay pour adoucir l'image de fond */
