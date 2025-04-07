@@ -5,16 +5,16 @@ body {
   font-family: 'Poppins', sans-serif;
   position: relative;
   min-height: 100vh;
-  background: url("image.png") no-repeat center center;
+  background: url("imagefond.jpeg") no-repeat center center;
   background-size: cover;
-  color: #ffffff;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 }
 
-/* Overlay pour assombrir l'image */
+/* Overlay pour adoucir l'image de fond */
 body::before {
   content: "";
   position: absolute;
@@ -26,34 +26,36 @@ body::before {
   z-index: 0;
 }
 
+/* Conteneur inspiré de l'univers aquatique */
 .container {
   position: relative;
   z-index: 1;
   text-align: center;
-  padding: 50px;
-  border-radius: 15px;
-  background: rgba(0, 0, 0, 0.6);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  animation: fadeInScale 1.5s ease-out;
-  max-width: 80%;
-  margin: auto;
+  padding: 60px 40px;
+  border-radius: 20px;
+  /* Dégradé et effet "eau" */
+  background: linear-gradient(135deg, rgba(30,144,255,0.3), rgba(255,255,255,0.1));
+  border: 2px solid rgba(255,255,255,0.5);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Animation au survol du conteneur */
 .container:hover {
   transform: scale(1.03);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
 
 h1 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 6em;
   margin-bottom: 0.5em;
-  color: #f30000;
+  color: #fff;
   text-transform: uppercase;
   letter-spacing: 5px;
-  background: linear-gradient(135deg, #1e90ff, #ffffff); /* Dégradé bleu-blanc */
+  /* Dégradé sur le texte : un mélange de bleu et de blanc */
+  background: linear-gradient(135deg, #1e90ff, #ffffff);
   -webkit-background-clip: text;
   background-clip: text;
   animation: slideIn 1s ease-out;
@@ -70,20 +72,20 @@ h1:hover {
 p {
   font-size: 1.5em;
   margin: 0.5em 0;
-  color: #A9D1D6; /* Couleur douce rappelant l'écume de mer */
+  color: #A9D1D6;
   line-height: 1.6;
   animation: fadeIn 2s ease-out;
 }
 
 .message {
   font-style: italic;
-  color: #B0E0E6; /* Bleu clair, apaisant */
+  color: #B0E0E6;
   font-size: 1.8em;
   animation: shake 0.5s ease-in-out infinite;
   margin-top: 20px;
 }
 
-/* Animations */
+/* Animations d'apparition */
 @keyframes fadeInScale {
   0% {
     opacity: 0;
@@ -123,4 +125,40 @@ p {
   80% { transform: translate(-1px, -1px) rotate(1deg); }
   90% { transform: translate(1px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+/* Bulles flottantes animées sur toute la page */
+.bubble {
+  position: absolute;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: bubbleMove 10s infinite ease-in-out;
+}
+
+.bubble:nth-child(odd) {
+  animation-duration: 12s;
+}
+
+.bubble:nth-child(even) {
+  animation-duration: 15s;
+}
+
+/* Animation pour faire flotter les bulles */
+@keyframes bubbleMove {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateX(100px) translateY(-300px);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateX(-100px) translateY(-600px);
+    opacity: 0.6;
+  }
 }
